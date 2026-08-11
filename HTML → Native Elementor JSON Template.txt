@@ -1,0 +1,9 @@
+HTML → Native Elementor JSON Template
+Convert the attached [SITE_NAME] index.html into a native Elementor JSON template (importable via Elementor’s Template Library).
+Requirements:
+Use only native Elementor widgets — Heading, Text Editor, Button, Icon Box, Icon List, Image, Star Rating, Testimonial, Form, Google Maps, Nav Menu, Image Box, Counter (or other native widgets as appropriate to the content). Never use the HTML widget for any content.
+Preserve the exact section order, structure, and nesting shown in the HTML’s <!-- EL:SECTION / EL:COLUMN / EL:INNER-SECTION / EL:WIDGET:... --> comments — each comment names the widget to use.
+Map all copy, links, icons (Font Awesome equivalents), and image URLs exactly as they appear in the HTML — no placeholder or lorem ipsum text.
+Do NOT inline any CSS into the JSON. All visual styling (colors, spacing, layout elements, cards, buttons, hover states) already exists in [STYLESHEET_NAME].css, which will be pasted into WordPress Customizer → Additional CSS separately — apply the same class names used in the HTML to each widget’s Advanced → CSS Classes field so that stylesheet continues to style them.
+Structure everything as Sections → Columns → Widgets so every element remains independently editable in Elementor’s visual editor (no locked/grouped elements).
+Output a single valid Elementor JSON template file.

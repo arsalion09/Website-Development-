@@ -1,0 +1,1948 @@
+3D ANIMATED WEBSITE ENGINEERING SPECIFICATION
+3DAWES — Production Standard v1.0
+
+Document Type: Master Website Generation & Engineering Specification
+Primary Use: AI-assisted generation of premium 3D animated websites
+Target: Production-ready, responsive, performant, accessible websites
+Technology: HTML5 + CSS3 + JavaScript + Three.js + GSAP + ScrollTrigger
+Optional: Lenis, GLTF/GLB, WebGL shaders, post-processing, HDR environments
+
+1. PURPOSE
+
+This specification defines a reusable engineering standard for creating sophisticated, cinematic, interactive, and production-ready websites featuring:
+
+- 3D scenes
+- WebGL experiences
+- Three.js objects and environments
+- GSAP animations
+- GSAP ScrollTrigger
+- Scroll-driven animation
+- Fixed/pinned scrolling
+- Parallax
+- Scroll reveal
+- Horizontal scrolling
+- Camera choreography
+- Mouse/touch interaction
+- Interactive objects
+- Particle systems
+- Animated typography
+- Image transitions
+- WebGL effects
+- Responsive layouts
+- Accessibility
+- Performance optimization
+- Reduced-motion support
+- Graceful degradation
+
+The resulting website must feel intentionally designed and engineered rather than being a collection of unrelated animation effects.
+
+2. PRIMARY ENGINEERING PRINCIPLE
+
+The website must follow this hierarchy:
+
+DESIGN
+  ↓
+CONTENT
+  ↓
+LAYOUT
+  ↓
+INTERACTION
+  ↓
+ANIMATION
+  ↓
+3D
+  ↓
+PERFORMANCE
+  ↓
+ACCESSIBILITY
+
+3D and animation must enhance the experience.
+
+They must never compromise:
+- usability
+- readability
+- navigation
+- accessibility
+- responsiveness
+- page speed
+- content hierarchy
+- maintainability
+
+3. CORE TECHNOLOGY STACK
+
+Required:
+- HTML5
+- CSS3
+- JavaScript
+- Three.js
+- GSAP
+- GSAP ScrollTrigger
+
+Optional:
+- Lenis
+- GLTF/GLB
+- WebGL shaders
+- post-processing
+- HDR environments
+
+HTML5:
+Use semantic elements such as header, nav, main, section, article, aside, and footer.
+
+CSS3:
+Use CSS custom properties, CSS Grid, Flexbox, clamp(), min(), max(), minmax(), container queries where appropriate, media queries, prefers-reduced-motion, and logical properties where practical.
+
+JavaScript:
+Use modern ES6+ JavaScript, modules, classes, async/await, import/export, and avoid unnecessary globals.
+
+Three.js:
+Use for 3D models, cameras, lights, materials, particles, interactive geometry, environments, and WebGL effects. Do not use Three.js for ordinary 2D UI animation that CSS/GSAP can handle more efficiently.
+
+GSAP:
+Use for timeline choreography, element transitions, object animation, camera animation, text animation, and complex sequencing.
+
+GSAP ScrollTrigger:
+Use for scroll reveals, scrub animations, pinned sections, horizontal scrolling, camera journeys, progress-based animation, and section choreography.
+
+Lenis:
+Use only when smooth scrolling materially improves the experience. It must never be mandatory for basic navigation or accessibility.
+
+4. PROJECT STRUCTURE
+
+Recommended:
+
+/
+├── index.html
+├── README.md
+├── LICENSE
+├── assets/
+│   ├── 3d/
+│   │   ├── models/
+│   │   ├── textures/
+│   │   └── environments/
+│   ├── images/
+│   ├── icons/
+│   ├── fonts/
+│   └── video/
+├── css/
+│   ├── base.css
+│   ├── variables.css
+│   ├── layout.css
+│   ├── components.css
+│   ├── animations.css
+│   └── responsive.css
+└── js/
+    ├── main.js
+    ├── config.js
+    ├── utils.js
+    ├── three/
+    │   ├── scene.js
+    │   ├── camera.js
+    │   ├── lighting.js
+    │   ├── models.js
+    │   ├── particles.js
+    │   └── interaction.js
+    ├── animations/
+    │   ├── hero.js
+    │   ├── reveal.js
+    │   ├── parallax.js
+    │   ├── pinned.js
+    │   ├── horizontal.js
+    │   ├── text.js
+    │   └── transitions.js
+    └── components/
+        ├── navigation.js
+        ├── cursor.js
+        ├── preloader.js
+        └── menu.js
+
+For smaller projects, files may be consolidated, but logical separation must remain.
+
+5. WEBSITE ARCHITECTURE
+
+Recommended structure:
+
+PRELOADER
+    ↓
+NAVIGATION
+    ↓
+HERO
+    ↓
+INTRODUCTION
+    ↓
+3D STORY / PINNED EXPERIENCE
+    ↓
+FEATURES
+    ↓
+HORIZONTAL EXPERIENCE
+    ↓
+PARALLAX SECTION
+    ↓
+INTERACTIVE SHOWCASE
+    ↓
+CONTENT / SERVICES / PRODUCTS
+    ↓
+CTA
+    ↓
+FOOTER
+
+The actual sections must adapt to the website niche. Do not force this exact structure on every project.
+
+6. DESIGN SYSTEM
+
+Before coding, define:
+- Brand
+- Visual direction
+- Color system
+- Typography
+- Spacing system
+- Grid
+- Border radius
+- Shadow system
+- Animation language
+- 3D language
+- Interaction language
+
+Use a coherent system rather than arbitrary values throughout the project.
+
+7. HERO ENGINEERING
+
+The hero is the primary cinematic entry point.
+
+Possible components:
+- 3D object
+- 3D environment
+- animated typography
+- large image
+- video
+- particles
+- floating elements
+- cursor interaction
+- camera movement
+- CTA
+- scroll indicator
+
+Recommended structure:
+HERO
+├── Background
+├── WebGL Canvas
+├── Decorative Layer
+├── Heading
+├── Description
+├── Primary CTA
+├── Secondary CTA
+└── Scroll Indicator
+
+The hero must establish the website's visual language immediately.
+
+8. 3D SCENE ARCHITECTURE
+
+Every Three.js scene should have:
+- Scene
+- Camera
+- Renderer
+- Lights
+- Environment
+- Main Objects
+- Secondary Objects
+- Particles
+- Interaction System
+
+Example:
+
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(
+  45,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  100
+);
+
+const renderer = new THREE.WebGLRenderer({
+  antialias: true,
+  alpha: true
+});
+
+Configure the renderer according to visual requirements and device capability.
+
+9. CAMERA SYSTEM
+
+Camera movement is a major component of cinematic 3D design.
+
+Possible camera properties:
+- position
+- rotation
+- zoom
+- fov
+- lookAt
+
+Camera animation can be controlled by GSAP.
+
+Example:
+
+gsap.to(camera.position, {
+  z: 3,
+  duration: 2,
+  ease: "power3.inOut"
+});
+
+For scroll-driven scenes:
+
+gsap.to(camera.position, {
+  z: 1,
+  scrollTrigger: {
+    trigger: section,
+    start: "top top",
+    end: "bottom bottom",
+    scrub: true
+  }
+});
+
+Camera movement must remain subtle enough to preserve spatial understanding.
+
+10. 3D MODEL STANDARD
+
+Preferred formats:
+- .glb
+- .gltf
+
+Before deployment:
+- remove unused geometry
+- remove unused materials
+- compress textures
+- optimize polygon counts
+- compress geometry where appropriate
+- use texture atlases where beneficial
+- use Draco/Meshopt when appropriate
+- preload only essential assets
+
+Do not load multiple enormous models simultaneously unless the experience genuinely requires them.
+
+11. MATERIALS AND LIGHTING
+
+Use lighting intentionally.
+
+Possible systems:
+- Ambient Light
+- Directional Light
+- Point Light
+- Spot Light
+- Hemisphere Light
+- Environment Map
+
+Do not add lights merely to make the scene brighter.
+
+Lighting should support:
+- hierarchy
+- depth
+- brand identity
+- object readability
+- mood
+
+12. PARTICLE SYSTEM
+
+Particles may be used for:
+- atmosphere
+- stars
+- dust
+- technology themes
+- abstract backgrounds
+- environmental depth
+
+Particle count must adapt to device capability.
+
+Starting guidelines:
+- High-end desktop: 10,000–30,000
+- Mid-range: 5,000–15,000
+- Mobile: 1,000–5,000
+- Low-power mode: minimal or disabled
+
+These are starting guidelines, not hard limits.
+
+13. SCROLL ANIMATION STANDARD
+
+Every major scroll animation must have:
+- Trigger
+- Start
+- End
+- Animation
+- Easing
+- Scrub
+- Pin
+- Refresh behavior
+- Responsive behavior
+- Reduced-motion behavior
+
+Example:
+
+gsap.from(".feature", {
+  y: 80,
+  opacity: 0,
+  duration: 1,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".feature",
+    start: "top 85%",
+    toggleActions: "play none none reverse"
+  }
+});
+
+14. SCROLL REVEAL SYSTEM
+
+Create reusable reveal classes:
+- .reveal-up
+- .reveal-down
+- .reveal-left
+- .reveal-right
+- .reveal-scale
+- .reveal-blur
+- .reveal-rotate
+- .reveal-clip
+
+Allow declarative hooks such as:
+
+<div data-reveal="up">
+
+or:
+
+<div class="reveal-up">
+
+Use consistent timing.
+
+15. PARALLAX SYSTEM
+
+Parallax should use multiple depth layers.
+
+Example:
+Layer 1 — Background
+Layer 2 — Image
+Layer 3 — Content
+Layer 4 — Decorative object
+
+Each layer receives different movement.
+
+Example:
+
+gsap.to(".parallax-image", {
+  yPercent: -15,
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".parallax-section",
+    scrub: true
+  }
+});
+
+Avoid excessive parallax. It must preserve visual stability.
+
+16. PINNED / FIXED SCROLL EXPERIENCE
+
+Pinned sections are appropriate for cinematic storytelling.
+
+Example:
+
+ScrollTrigger.create({
+  trigger: ".story",
+  start: "top top",
+  end: "+=3000",
+  pin: true,
+  scrub: true
+});
+
+A pinned scene may contain:
+- 3D object
+- camera movement
+- text transition
+- object transformation
+- background transition
+- next scene
+
+Pinned sections must have meaningful progression.
+
+Never pin content merely to create a flashy effect.
+
+17. HORIZONTAL SCROLL
+
+Horizontal scrolling may be simulated vertically.
+
+Structure:
+Vertical scroll
+      ↓
+Horizontal content movement
+      ↓
+Next vertical section
+
+Example:
+
+const panels = gsap.utils.toArray(".panel");
+
+gsap.to(panels, {
+  xPercent: -100 * (panels.length - 1),
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".horizontal",
+    pin: true,
+    scrub: 1,
+    end: "+=4000"
+  }
+});
+
+The number of panels and scroll distance must be responsive.
+
+18. TEXT ANIMATION
+
+Typography is a primary animation layer.
+
+Use:
+- word reveals
+- character reveals
+- line reveals
+- stagger
+- clip-path
+- opacity
+- blur
+- vertical movement
+- scale
+- masking
+
+Possible patterns:
+- Fade + Translate
+- Clip Reveal
+- Word Stagger
+- Character Stagger
+- Line Mask
+- Split Heading
+
+Do not animate every text element. Important content must remain easy to read.
+
+19. IMAGE ANIMATION
+
+Possible image animations:
+- Scale
+- Parallax
+- Clip reveal
+- Mask reveal
+- Rotation
+- Blur to sharp
+- Grayscale to color
+- Position shift
+- Perspective
+
+Example:
+
+gsap.from(".image", {
+  scale: 1.15,
+  scrollTrigger: {
+    trigger: ".image-wrapper",
+    start: "top bottom",
+    end: "bottom top",
+    scrub: true
+  }
+});
+
+20. MOUSE INTERACTION
+
+Optional desktop interactions:
+- Cursor-following objects
+- Magnetic buttons
+- 3D tilt
+- Camera movement
+- Object rotation
+- Lighting response
+- Hover distortion
+
+Do not depend on mouse interaction for essential functionality. Touch devices must have an alternative experience.
+
+21. MAGNETIC BUTTONS
+
+Magnetic buttons should have restrained movement.
+
+Behavior:
+Pointer enters
+    ↓
+Button follows pointer slightly
+    ↓
+Pointer exits
+    ↓
+Button smoothly returns
+
+Never allow the button to move so far that it becomes difficult to click.
+
+22. CUSTOM CURSOR
+
+A custom cursor may be used on desktop.
+
+It must:
+- disappear or simplify on touch devices
+- never replace native pointer functionality
+- never interfere with clicking
+- maintain sufficient contrast
+- remain performant
+
+Possible states:
+- default
+- hover
+- link
+- drag
+- view
+- disabled
+
+23. PAGE TRANSITIONS
+
+Optional transitions:
+- Curtain
+- Clip-path
+- Fade
+- Scale
+- Blur
+- Liquid
+- Morph
+- WebGL displacement
+
+Page transitions must not delay normal navigation excessively.
+
+24. PRELOADER
+
+The preloader should be short and purposeful.
+
+Possible sequence:
+0%
+ ↓
+Logo
+ ↓
+Loading indicator
+ ↓
+3D asset ready
+ ↓
+Hero reveal
+
+Avoid unnecessary long loading animations.
+
+If critical 3D assets fail, the website must still render a usable fallback.
+
+25. LOADING STRATEGY
+
+Use progressive loading.
+
+Priority:
+1. HTML
+2. CSS
+3. Critical fonts
+4. Hero image
+5. Essential JavaScript
+6. Essential 3D model
+7. Secondary images
+8. Secondary 3D assets
+9. Optional effects
+
+Do not block the entire page while non-critical assets load.
+
+26. RESPONSIVE DESIGN
+
+Support:
+- Large desktop
+- Desktop
+- Tablet
+- Mobile
+- Small mobile
+
+Do not simply shrink the desktop experience.
+
+Mobile may require a different animation strategy.
+
+Example:
+
+Desktop:
+- Full 3D scene
+- Mouse interaction
+- Complex camera animation
+- Pinned storytelling
+
+Mobile:
+- Simplified 3D
+- Reduced particles
+- No custom cursor
+- Shorter pinned scenes
+- Simplified camera movement
+
+27. MOBILE 3D STRATEGY
+
+Potential reductions:
+- Lower DPR
+- Lower particle count
+- Reduced shadow quality
+- Reduced model complexity
+- Fewer post-processing effects
+- Simplified materials
+- Reduced animation frequency
+
+Possible capability tiers:
+Desktop → full WebGL
+Tablet → optimized WebGL
+Mobile → simplified WebGL
+Low-power → static fallback
+
+28. DEVICE CAPABILITY DETECTION
+
+The system may evaluate:
+- screen size
+- device pixel ratio
+- WebGL availability
+- hardware concurrency
+- memory where available
+- connection quality where available
+
+Use capability tiers:
+HIGH
+MEDIUM
+LOW
+FALLBACK
+
+Never rely on one device property alone.
+
+29. DEVICE PIXEL RATIO
+
+Do not blindly use:
+
+renderer.setPixelRatio(window.devicePixelRatio);
+
+Instead cap it:
+
+renderer.setPixelRatio(
+  Math.min(window.devicePixelRatio, 2)
+);
+
+For mobile, a lower cap may be appropriate.
+
+30. PERFORMANCE RULES
+
+Avoid:
+- unnecessary DOM queries
+- excessive scroll listeners
+- layout thrashing
+- forced synchronous layouts
+- huge textures
+- uncompressed models
+- excessive particle counts
+- unnecessary shadows
+- large canvas rendering areas
+- continuous expensive calculations
+
+Prefer:
+- requestAnimationFrame
+- GSAP ticker
+- GPU-friendly transforms
+- transform/opacity animation
+- asset compression
+- lazy loading
+- object reuse
+- instancing
+
+31. GPU-FRIENDLY ANIMATION
+
+Prefer:
+- transform
+- opacity
+- scale
+- rotation
+- translate
+
+Avoid repeatedly animating expensive layout properties such as width, height, top, left, margin, and padding when transforms can achieve the same result.
+
+32. THREE.JS RENDER LOOP
+
+Keep the render loop lightweight.
+
+Concept:
+
+function animate() {
+  requestAnimationFrame(animate);
+  updateScene();
+  renderer.render(scene, camera);
+}
+
+animate();
+
+Avoid expensive DOM calculations every frame.
+
+33. RESIZE HANDLING
+
+The renderer and camera must respond to viewport changes.
+
+Example:
+
+function handleResize() {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(width, height);
+}
+
+ScrollTrigger must also refresh after major layout changes.
+
+34. CLEANUP
+
+Every major component must be capable of cleanup.
+
+Clean up:
+- event listeners
+- ScrollTriggers
+- GSAP timelines
+- WebGL resources
+- textures
+- materials
+- geometries
+- animation loops
+
+For disposed Three.js resources:
+
+geometry.dispose();
+material.dispose();
+texture.dispose();
+
+35. ACCESSIBILITY
+
+The website must support:
+- keyboard navigation
+- screen readers
+- visible focus
+- semantic HTML
+- ARIA where necessary
+- reduced motion
+- readable contrast
+- accessible buttons
+- accessible links
+
+Do not rely exclusively on animation to communicate information.
+
+36. REDUCED MOTION
+
+Implement:
+
+@media (prefers-reduced-motion: reduce) {
+  ...
+}
+
+When reduced motion is requested:
+- disable parallax
+- disable large camera movements
+- reduce scroll choreography
+- disable cursor effects
+- reduce particle movement
+- disable unnecessary transitions
+- simplify 3D animation
+
+The website must remain fully usable.
+
+37. WEBGL FAILURE FALLBACK
+
+If WebGL is unavailable:
+- do not show a blank canvas
+- do not break layout
+- do not block content
+
+Fallback to:
+- static image
+- gradient
+- video
+- CSS animation
+- static 3D render
+
+The user should still experience a polished website.
+
+38. ERROR HANDLING
+
+Handle:
+- model loading failure
+- texture failure
+- WebGL failure
+- missing asset
+- invalid media
+- animation initialization failure
+
+A failed animation must never break the rest of the page.
+
+Example:
+
+try {
+  initThreeScene();
+} catch (error) {
+  console.error(error);
+  enableFallback();
+}
+
+39. GSAP ARCHITECTURE
+
+Do not create random animations throughout the codebase.
+
+Use a centralized architecture:
+
+initAnimations()
+    ├── initHero()
+    ├── initReveal()
+    ├── initParallax()
+    ├── initPinnedScenes()
+    ├── initHorizontalScroll()
+    ├── initTextAnimations()
+    └── initInteractions()
+
+Each module should be independently maintainable.
+
+40. GSAP CONTEXT
+
+When appropriate, use GSAP context to scope animations and enable cleanup.
+
+Concept:
+
+const ctx = gsap.context(() => {
+  // animations
+}, container);
+
+This is especially useful for reusable components.
+
+41. RESPONSIVE GSAP LOGIC
+
+Animation behavior may differ by breakpoint.
+
+Desktop:
+- complex cinematic experience
+
+Mobile/tablet:
+- simplified experience
+
+Do not force desktop animation timelines onto mobile.
+
+42. ANIMATION TIMING SYSTEM
+
+Use a consistent animation vocabulary.
+
+Starting guidelines:
+- Micro interaction: 0.15–0.3s
+- UI transition: 0.3–0.6s
+- Reveal: 0.6–1.0s
+- Hero animation: 1.0–2.0s
+- Cinematic sequence: 2.0s+
+
+These are guidelines, not rigid requirements.
+
+43. EASING
+
+Use easing intentionally.
+
+Common categories:
+- power1
+- power2
+- power3
+- power4
+- expo
+- circ
+- back
+- elastic
+- none
+
+Recommended:
+- ease-out → entrance
+- ease-in-out → movement
+- none → scroll scrub
+- elastic/back → playful UI
+- expo → dramatic transitions
+
+Avoid excessive use of dramatic easing.
+
+44. SCROLL SCRUB STANDARD
+
+Use scrub for animations that should directly correspond to scroll position.
+
+Examples:
+scrub: true
+scrub: 1
+
+Avoid excessive smoothing if it makes scrolling feel disconnected from the animation.
+
+45. SCROLLTRIGGER REFRESH
+
+Dynamic content and asynchronous assets can change dimensions.
+
+After major asset/layout changes:
+
+ScrollTrigger.refresh();
+
+Do not call refresh continuously.
+
+46. 3D + DOM SYNCHRONIZATION
+
+3D scenes and HTML content should feel like a single composition.
+
+Possible synchronization:
+DOM heading moves
+        +
+3D object rotates
+        +
+camera moves
+        +
+background changes
+
+Use one coordinated timeline when elements belong to the same narrative.
+
+47. CINEMATIC STORYTELLING MODEL
+
+A premium experience should follow:
+
+INTRODUCE
+    ↓
+BUILD
+    ↓
+TRANSFORM
+    ↓
+REVEAL
+    ↓
+RESOLVE
+
+Example:
+Hero introduces product
+↓
+Scroll zooms into product
+↓
+Product transforms
+↓
+Features appear
+↓
+Product returns to normal
+↓
+CTA appears
+
+Animation should communicate progression.
+
+48. SECTION TRANSITION STANDARD
+
+Sections should visually connect.
+
+Possible transition techniques:
+- Shared object
+- Shared color
+- Camera movement
+- Parallax
+- Overlapping content
+- Shape morph
+- Image continuation
+- Typography transition
+
+Avoid abrupt transitions unless intentionally designed.
+
+49. 3D OBJECT AS VISUAL ANCHOR
+
+A central 3D object can travel through multiple sections.
+
+Example:
+Hero
+   ↓
+Product rotates
+   ↓
+Features appear around it
+   ↓
+Camera moves
+   ↓
+Product changes state
+   ↓
+Final CTA
+
+This creates continuity.
+
+50. INTERACTION STATES
+
+Every interactive component must define:
+- Default
+- Hover
+- Focus
+- Active
+- Pressed
+- Disabled
+- Loading
+- Error
+
+Do not design hover-only experiences.
+
+51. NAVIGATION
+
+Navigation must remain usable regardless of animation state.
+
+Possible:
+- Transparent navbar
+- Sticky navbar
+- Auto-hide navbar
+- Glass navigation
+- Fullscreen menu
+- Magnetic CTA
+
+The navigation should not become inaccessible during pinned sections.
+
+52. MOBILE NAVIGATION
+
+Use a dedicated mobile navigation experience.
+
+Example:
+Menu button
+     ↓
+Fullscreen / drawer menu
+     ↓
+Animated links
+     ↓
+CTA
+
+Lock body scroll only when the menu is actually open. Restore scroll state correctly when closed.
+
+53. TYPOGRAPHY PERFORMANCE
+
+Use modern web font loading strategies.
+
+Avoid loading unnecessary weights.
+
+Only include required weights such as:
+- 400
+- 500
+- 600
+- 700
+
+Use fallback fonts to avoid invisible text.
+
+54. IMAGE OPTIMIZATION
+
+Preferred formats:
+- AVIF
+- WebP
+- SVG
+
+Use responsive images with srcset and sizes.
+
+Never use a 5000px image where a 1000px image is sufficient.
+
+55. VIDEO OPTIMIZATION
+
+If using video:
+- autoplay
+- muted
+- loop
+- playsinline
+
+Provide fallback content.
+
+Do not automatically load huge videos on mobile.
+
+56. SEO
+
+3D animation must not compromise SEO.
+
+Include:
+- title
+- meta description
+- canonical
+- Open Graph
+- semantic headings
+- structured content
+- alt text
+- robots
+- sitemap where appropriate
+
+Important content must exist in HTML rather than only inside WebGL.
+
+57. CONTENT REQUIREMENTS
+
+Never use:
+- Lorem ipsum
+- placeholder heading
+- dummy description
+- fake testimonial
+- generic CTA
+
+unless explicitly requested.
+
+All generated content must fit the selected niche.
+
+58. DESIGN-NICHE ADAPTATION
+
+Animation language must match the industry.
+
+Luxury:
+- slow
+- elegant
+- minimal
+- dark
+- precise
+- subtle 3D
+
+Technology:
+- fast
+- futuristic
+- particles
+- glowing objects
+- camera movement
+- WebGL
+
+Architecture:
+- geometric
+- minimal
+- spatial
+- slow camera movement
+- structural transitions
+
+Automotive:
+- cinematic
+- high contrast
+- product-focused
+- fast transitions
+- 3D vehicle
+
+Fashion:
+- editorial
+- large typography
+- image choreography
+- smooth transitions
+- elegant movement
+
+Creative Agency:
+- experimental
+- bold
+- unexpected
+- fluid
+- interactive
+
+59. ANIMATION DENSITY
+
+Do not animate everything.
+
+Recommended hierarchy:
+Primary animation
+     ↓
+Secondary animation
+     ↓
+Micro interaction
+
+Approximate density:
+- Hero → high
+- Main storytelling → high
+- Supporting sections → medium
+- Utility UI → subtle
+- Footer → low
+
+Visual rest is important.
+
+60. PERFORMANCE BUDGET
+
+Treat performance as a design constraint.
+
+Monitor:
+- JavaScript size
+- CSS size
+- image weight
+- 3D model size
+- texture size
+- WebGL rendering cost
+- frame rate
+- layout shifts
+- interaction responsiveness
+- loading time
+
+The goal is a smooth experience, not maximum graphical complexity.
+
+61. FRAME RATE TARGET
+
+Aim for 60 FPS on capable devices.
+
+On constrained devices prioritize:
+- stable frame rate
+- responsive scrolling
+- interaction reliability
+
+A consistent 45 FPS experience may be preferable to an unstable 60 → 20 FPS experience.
+
+62. WEBGL CANVAS MANAGEMENT
+
+Canvas should not render at unnecessarily high resolution.
+
+Use:
+- capped pixel ratio
+- appropriate canvas size
+- visibility detection
+
+When the 3D scene is not visible, consider reducing or pausing expensive work.
+
+63. INTERSECTION OBSERVER
+
+Use IntersectionObserver for simple visibility-based behavior.
+
+Good use cases:
+- lazy loading
+- starting non-critical effects
+- activating components
+
+Use ScrollTrigger when precise scroll progress is required.
+
+64. ANIMATION INITIALIZATION
+
+Initialize in stages:
+
+DOM ready
+   ↓
+Core UI
+   ↓
+Hero
+   ↓
+Critical animation
+   ↓
+3D scene
+   ↓
+Secondary animations
+
+Do not initialize every expensive system simultaneously.
+
+65. DEBUG MODE
+
+Include an optional development/debug mode.
+
+Possible features:
+- FPS display
+- camera controls
+- scene helpers
+- ScrollTrigger markers
+- asset status
+- device tier
+- WebGL status
+
+Debug tools must not ship visibly enabled in production.
+
+66. ACCESSIBILITY TESTING
+
+Test:
+- keyboard only
+- screen reader
+- reduced motion
+- zoom
+- high contrast
+- touch
+- mobile
+- desktop
+
+Every important action must remain possible without animation.
+
+67. CROSS-BROWSER TESTING
+
+Test modern versions of:
+- Chrome
+- Safari
+- Firefox
+- Edge
+
+Especially verify:
+- WebGL
+- scroll behavior
+- sticky positioning
+- backdrop filters
+- video
+- font loading
+- mobile Safari
+
+68. FAILURE TESTING
+
+Intentionally test:
+- slow network
+- no network
+- WebGL unavailable
+- 3D model unavailable
+- image unavailable
+- JavaScript partially fails
+- very small viewport
+- very large viewport
+- reduced motion
+- touch device
+- keyboard navigation
+
+The website must degrade gracefully.
+
+69. CODE QUALITY
+
+Generated code must be:
+- readable
+- modular
+- commented where useful
+- consistent
+- maintainable
+- reusable
+
+Do not produce:
+- massive monolithic JS
+- duplicated animation logic
+- unused libraries
+- unused assets
+- dead CSS
+- mysterious magic numbers
+
+70. COMMENTS
+
+Comments should explain intent, not obvious syntax.
+
+Good:
+"Move the camera through the product sequence as the user scrolls."
+
+Bad:
+"Set camera z to 3."
+
+71. SECURITY
+
+Do not:
+- inject unsanitized user content
+- load arbitrary scripts
+- use unknown external resources unnecessarily
+- expose secrets
+- hardcode API keys
+
+External dependencies must be known and trusted.
+
+72. EXTERNAL DEPENDENCY POLICY
+
+Use only dependencies that provide meaningful value.
+
+Typical stack:
+- Three.js
+- GSAP
+- ScrollTrigger
+- Optional Lenis
+
+Do not add a library for something that can be implemented cleanly with native CSS/JS.
+
+73. CDN VS LOCAL ASSETS
+
+For marketplace templates, prefer a clear dependency strategy.
+
+Document:
+- CDN dependencies
+- local dependencies
+- version numbers
+- installation instructions
+
+If licensing/distribution permits, package dependencies appropriately.
+
+74. MARKETPLACE READINESS
+
+The final package should be understandable to another developer.
+
+Include:
+- index.html
+- assets/
+- css/
+- js/
+- README.md
+- documentation
+- license information
+- source assets where appropriate
+
+Documentation should explain:
+- how to run
+- how to customize colors
+- how to replace images
+- how to replace 3D model
+- how to modify text
+- how to change animations
+- how to disable 3D
+- how to modify breakpoints
+
+75. CONFIGURATION SYSTEM
+
+Centralize customizable settings.
+
+Example:
+
+const SITE_CONFIG = {
+  theme: {
+    accent: "#7C5CFF",
+    background: "#080808"
+  },
+
+  animation: {
+    intensity: 1,
+    durationMultiplier: 1
+  },
+
+  three: {
+    enabled: true,
+    particles: true
+  }
+};
+
+This allows users to customize the experience without digging through the entire codebase.
+
+76. ANIMATION INTENSITY
+
+Provide optional animation levels:
+- LOW
+- MEDIUM
+- HIGH
+
+This can control:
+- parallax distance
+- camera movement
+- particle movement
+- transition duration
+- rotation
+
+77. 3D ENABLE/DISABLE SWITCH
+
+For maintainability:
+
+three.enabled = true;
+
+When disabled:
+- WebGL canvas hidden
+- fallback visual shown
+- DOM experience remains intact
+
+Useful for:
+- low-end devices
+- accessibility
+- debugging
+- marketplace buyers
+
+78. ANIMATION DATA ATTRIBUTES
+
+Use declarative animation hooks.
+
+Examples:
+
+<div data-animation="reveal-up"></div>
+
+<div data-animation="parallax" data-speed="0.2"></div>
+
+<div data-animation="scale" data-start="1.2"></div>
+
+This enables reusable animation systems.
+
+79. COMPONENT REUSABILITY
+
+Reusable components should include:
+- Hero
+- Navbar
+- Button
+- Reveal
+- Parallax image
+- Feature card
+- Project card
+- Horizontal gallery
+- 3D showcase
+- CTA
+- Footer
+
+Components should not depend on unrelated sections.
+
+80. 3D SCENE REUSABILITY
+
+The Three.js layer should allow replacing:
+- model
+- camera
+- lighting
+- environment
+- animation
+- colors
+- particles
+
+without rewriting the entire website.
+
+81. FINAL QA CHECKLIST
+
+Structure:
+[ ] Semantic HTML
+[ ] Correct section hierarchy
+[ ] Responsive layout
+[ ] Navigation works
+[ ] Footer works
+
+3D:
+[ ] Scene initializes
+[ ] Model loads
+[ ] Camera works
+[ ] Lighting works
+[ ] Resize works
+[ ] WebGL fallback works
+[ ] Resources are disposed
+
+Animation:
+[ ] Hero animation works
+[ ] Scroll reveal works
+[ ] Parallax works
+[ ] Pinned sections work
+[ ] Horizontal scroll works
+[ ] Text animations work
+[ ] Mouse interactions work
+[ ] Mobile animations work
+
+Performance:
+[ ] Images optimized
+[ ] Models optimized
+[ ] Textures optimized
+[ ] DPR capped
+[ ] Particle count controlled
+[ ] No unnecessary render loops
+[ ] No excessive scroll listeners
+
+Accessibility:
+[ ] Keyboard navigation
+[ ] Focus states
+[ ] Alt text
+[ ] Semantic HTML
+[ ] Reduced motion
+[ ] WebGL fallback
+
+SEO:
+[ ] Title
+[ ] Meta description
+[ ] H1
+[ ] Heading hierarchy
+[ ] Open Graph
+[ ] Semantic content
+
+82. AI WEBSITE GENERATION WORKFLOW
+
+PHASE 1 — UNDERSTAND
+
+Identify:
+- niche
+- target audience
+- business objective
+- visual style
+- content requirements
+- primary CTA
+- required sections
+- animation intensity
+- 3D requirements
+- responsive requirements
+
+PHASE 2 — DESIGN
+
+Create:
+- design direction
+- color palette
+- typography
+- spacing
+- grid
+- component system
+- animation language
+- 3D language
+
+PHASE 3 — CONTENT
+
+Generate complete, realistic content. Never leave unexplained placeholders.
+
+PHASE 4 — ARCHITECTURE
+
+Plan:
+- HTML
+- CSS
+- JavaScript
+- Three.js
+- GSAP
+- ScrollTrigger
+- assets
+- components
+
+PHASE 5 — BUILD STATIC STRUCTURE
+
+Build the complete semantic HTML structure first.
+
+The page must be understandable even before animation.
+
+PHASE 6 — BUILD VISUAL SYSTEM
+
+Implement:
+- colors
+- typography
+- spacing
+- layout
+- cards
+- buttons
+- navigation
+- responsive structure
+
+PHASE 7 — IMPLEMENT ANIMATION
+
+Add:
+- hero
+- reveal
+- parallax
+- scroll
+- pin
+- horizontal
+- text
+- micro interactions
+
+PHASE 8 — IMPLEMENT 3D
+
+Add:
+- scene
+- camera
+- lighting
+- models
+- materials
+- particles
+- interaction
+
+3D should integrate into the existing design rather than dictate every component.
+
+PHASE 9 — PERFORMANCE
+
+Optimize:
+- assets
+- models
+- textures
+- rendering
+- animations
+- loading
+- mobile
+
+PHASE 10 — ACCESSIBILITY
+
+Implement:
+- keyboard
+- focus
+- reduced motion
+- fallbacks
+- semantic content
+
+PHASE 11 — TEST
+
+Test every:
+- section
+- animation
+- interaction
+- breakpoint
+- failure state
+
+PHASE 12 — DELIVERY
+
+Provide:
+- complete source
+- assets
+- documentation
+- configuration
+- README
+
+83. AI AGENT NON-NEGOTIABLE RULES
+
+The AI agent MUST:
+1. Build the complete website rather than a visual mockup.
+2. Use semantic HTML.
+3. Use responsive CSS.
+4. Use GSAP for complex animation.
+5. Use ScrollTrigger for scroll choreography.
+6. Use Three.js only where 3D provides genuine value.
+7. Optimize 3D assets.
+8. Implement mobile behavior intentionally.
+9. Implement reduced-motion support.
+10. Provide WebGL fallback behavior.
+11. Avoid placeholder content.
+12. Avoid broken links.
+13. Avoid console errors.
+14. Avoid unnecessary dependencies.
+15. Avoid excessive animation.
+16. Keep code modular.
+17. Test all major interactions.
+18. Ensure the website works without WebGL.
+19. Ensure core content remains accessible.
+20. Deliver a complete runnable project.
+
+84. AI AGENT PROHIBITED BEHAVIOR
+
+The AI agent MUST NOT:
+- create fake functionality
+- use lorem ipsum
+- leave TODO placeholders
+- create broken buttons
+- create inaccessible navigation
+- rely exclusively on hover
+- make mobile a scaled desktop
+- use enormous unoptimized models
+- load unnecessary libraries
+- create excessive DOM nodes
+- create dozens of independent animation loops
+- animate layout properties unnecessarily
+- block the page waiting for non-critical assets
+- create an empty WebGL fallback
+- sacrifice usability for visual effects
+- claim functionality that does not exist
+
+85. DEFINITION OF DONE
+
+A 3D animated website is considered complete only when:
+
+[✓] Complete design
+[✓] Complete content
+[✓] Complete responsive layout
+[✓] Functional navigation
+[✓] Functional CTAs
+[✓] Functional 3D
+[✓] Functional GSAP animations
+[✓] Functional scroll choreography
+[✓] Functional parallax
+[✓] Functional pinned scenes
+[✓] Functional responsive behavior
+[✓] Mobile optimization
+[✓] Reduced-motion support
+[✓] WebGL fallback
+[✓] Performance optimization
+[✓] SEO foundation
+[✓] Accessibility foundation
+[✓] No console errors
+[✓] No broken assets
+[✓] No placeholder content
+[✓] Documentation included
+
+86. MASTER ANIMATION PRESET LIBRARY
+
+The reusable system should support at minimum:
+
+REVEAL_UP
+REVEAL_DOWN
+REVEAL_LEFT
+REVEAL_RIGHT
+FADE_IN
+FADE_OUT
+SCALE_IN
+SCALE_OUT
+BLUR_IN
+BLUR_OUT
+ROTATE_IN
+ROTATE_OUT
+CLIP_REVEAL
+MASK_REVEAL
+TEXT_WORD_STAGGER
+TEXT_CHARACTER_STAGGER
+TEXT_LINE_REVEAL
+PARALLAX
+DEEP_PARALLAX
+PINNED_TRANSFORM
+PINNED_CAMERA
+HORIZONTAL_SCROLL
+IMAGE_ZOOM
+IMAGE_PAN
+3D_ROTATE
+3D_FLOAT
+3D_CAMERA_DOLLY
+3D_CAMERA_ORBIT
+MAGNETIC_BUTTON
+CURSOR_FOLLOW
+TILT
+SECTION_TRANSITION
+PAGE_TRANSITION
+
+87. MASTER 3D EXPERIENCE PATTERNS
+
+Product Orbit:
+Product centered
+Camera fixed
+Object rotates
+Features appear around object
+
+Camera Journey:
+Camera moves through environment
+Objects appear sequentially
+Sections correspond to camera positions
+
+Floating Object:
+Object slowly floats
+Mouse modifies rotation
+Scroll modifies position
+
+3D Product Transformation:
+Object state A
+      ↓
+Scroll
+      ↓
+Object rotates
+      ↓
+Object transforms
+      ↓
+State B
+
+Particle Environment:
+Particles
++
+Depth
++
+Camera movement
++
+Subtle interaction
+
+88. MASTER QUALITY STANDARD
+
+The final result should feel:
+- intentional
+- cinematic
+- premium
+- responsive
+- fast
+- interactive
+- modern
+- cohesive
+- accessible
+- maintainable
+
+It should NOT feel:
+- over-animated
+- random
+- heavy
+- laggy
+- template-like
+- generic
+- inaccessible
+
+89. GOLDEN RULE
+
+The purpose of 3D animation is not to demonstrate that the developer can use Three.js.
+
+The purpose is to create:
+
+"A visual experience in which design, content, interaction, motion, and 3D work together as one coherent system."
+
+Every animation must answer at least one question:
+- Does it improve understanding?
+- Does it establish hierarchy?
+- Does it create atmosphere?
+- Does it guide attention?
+- Does it communicate change?
+- Does it improve interaction?
+- Does it strengthen the brand?
+
+If the answer is no, remove the animation.
+
+90. FINAL AI GENERATION DIRECTIVE
+
+When this specification is supplied to an AI coding agent, the agent must behave as:
+
+Senior Creative Director
++
+Senior UI/UX Designer
++
+Senior Frontend Engineer
++
+Three.js Engineer
++
+GSAP Animation Engineer
++
+Performance Engineer
++
+Accessibility Engineer
+
+The agent must independently make reasonable design and engineering decisions rather than waiting for instructions for every implementation detail.
+
+The final output must be a complete, coherent, production-ready website—not merely a collection of components, animation snippets, or a visual approximation.
+
+The website must prioritize:
+
+1. User experience
+2. Visual quality
+3. Functional correctness
+4. Performance
+5. Accessibility
+6. Responsiveness
+7. Maintainability
+
+END OF 3DAWES v1.0
